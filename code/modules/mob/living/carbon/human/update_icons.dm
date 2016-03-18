@@ -519,12 +519,12 @@ var/global/list/damage_icon_parts = list()
 
 /mob/living/carbon/human/update_inv_gloves(var/update_icons=1)
 	if(gloves)
-		var/t_state = gloves.item_state
-		if(!t_state)	t_state = gloves.icon_state
+		var/t_state = gloves.icon_state
+		if(!t_state)	t_state = gloves.item_state
 
 		var/image/standing
 		if(gloves.icon_override)
-			standing = image("icon" = gloves.icon_override, "icon_state" = "[t_state]")
+			standing = image("icon" = gloves.icon_override, "icon_state" = t_state)
 		else
 			standing = get_gloves_sprite(t_state)
 
@@ -774,7 +774,7 @@ var/global/list/damage_icon_parts = list()
 
 		if(back.color)
 			standing.color = back.color
-			underlay.color = back.color
+			if(underlay) underlay.color = back.color
 
 		//create the image
 		overlays_standing[BACK_LAYER] = standing
