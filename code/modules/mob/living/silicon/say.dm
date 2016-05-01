@@ -43,10 +43,6 @@
 
 	return speak_statement
 
-#define IS_AI 1
-#define IS_ROBOT 2
-#define IS_PAI 3
-
 /mob/living/silicon/say_understands(var/other,var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if (!speaking)
@@ -81,7 +77,7 @@
 		//This is much faster.
 		var/list/listening = list()
 		var/list/listening_obj = list()
-		var/turf/T = get_turf(H)		
+		var/turf/T = get_turf(H)
 
 		if(T)
 			var/list/hear = hear(7, T)
@@ -101,7 +97,7 @@
 
 
 			for(var/mob/M in player_list)
-				if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS))
+				if(M.stat == DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTEARS))
 					M.hear_say(message,verb,speaking,null,null, src)
 					continue
 				if(M.loc && M.locs[1] in hearturfs)
@@ -140,7 +136,3 @@
 		src.holopad_emote(message)
 	else //Emote normally, then.
 		..()
-
-#undef IS_AI
-#undef IS_ROBOT
-#undef IS_PAI

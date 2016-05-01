@@ -567,7 +567,7 @@
 				new /obj/item/stack/cable_coil(loc,10)
 				user << "<span class='notice'>You cut the cables and dismantle the power terminal.</span>"
 				qdel(terminal)
-	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && !((stat & BROKEN)))
+	/*else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && !((stat & BROKEN)))
 		user.visible_message("<span class='warning'>[user.name] inserts the power control board into [src].</span>", \
 							"You start to insert the power control board into the frame...")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -578,7 +578,19 @@
 				qdel(W)
 	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0 && ((stat & BROKEN)))
 		user << "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>"
-		return
+		return*/
+	else if (istype(W, /obj/item/weapon/module/power_control) && opened && has_electronics==0)
+		if ((stat & BROKEN))
+			user << "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>"
+			return
+		user.visible_message("<span class='warning'>[user.name] inserts the power control board into [src].</span>", \
+							"You start to insert the power control board into the frame...")
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		if(do_after(user, 10))
+			if(has_electronics==0)
+				has_electronics = 1
+				user << "<span class='notice'>You place the power control board inside the frame.</span>"
+				qdel(W)
 	else if (istype(W, /obj/item/weapon/weldingtool) && opened && has_electronics==0 && !terminal)
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
@@ -626,8 +638,9 @@
 			qdel(W)
 			stat &= ~BROKEN
 			// Malf AI, removes the APC from AI's hacked APCs list.
-			if(hacker && hacker.hacked_apcs && src in hacker.hacked_apcs)
-				hacker.hacked_apcs -= src
+			if(hacker)
+				if(hacker.hacked_apcs && (src in hacker.hacked_apcs))
+					hacker.hacked_apcs -= src
 			if (opened==2)
 				opened = 1
 			update_icon()
@@ -1100,34 +1113,38 @@
 	else if(longtermpower > -10)
 		longtermpower -= 2
 
-	if((cell.percent() > 30) || longtermpower > 0)              // Put most likely at the top so we don't check it last, effeciency 101
+	var/charge = cell ? cell.percent() : 0
+	if(charge > 30 || longtermpower > 0)              // Put most likely at the top so we don't check it last, effeciency 101
 		if(autoflag != 3)
 			equipment = autoset(equipment, 1)
 			lighting = autoset(lighting, 1)
 			environ = autoset(environ, 1)
 			autoflag = 3
 			power_alarm.clearAlarm(loc, src)
-	else if((cell.percent() <= 30) && (cell.percent() > 15) && longtermpower < 0)                       // <30%, turn off equipment
+
+	else if(charge <= 30 && charge > 15 && longtermpower < 0)                       // <30%, turn off equipment
 		if(autoflag != 2)
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 1)
 			environ = autoset(environ, 1)
 			power_alarm.triggerAlarm(loc, src)
 			autoflag = 2
-	else if(cell.percent() <= 15)        // <15%, turn off lighting & equipment
+
+	else if(charge <= 15)        // <15%, turn off lighting & equipment
 		if((autoflag > 1 && longtermpower < 0) || (autoflag > 1 && longtermpower >= 0))
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 2)
 			environ = autoset(environ, 1)
 			power_alarm.triggerAlarm(loc, src)
 			autoflag = 1
-	else                                   // zero charge, turn all off
-		if(autoflag != 0)
-			equipment = autoset(equipment, 0)
-			lighting = autoset(lighting, 0)
-			environ = autoset(environ, 0)
-			power_alarm.triggerAlarm(loc, src)
-			autoflag = 0
+
+		// zero charge, turn all off
+	else if(autoflag != 0)
+		equipment = autoset(equipment, 0)
+		lighting = autoset(lighting, 0)
+		environ = autoset(environ, 0)
+		power_alarm.triggerAlarm(loc, src)
+		autoflag = 0
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
 // on 0=off, 1=on, 2=autooff

@@ -24,10 +24,9 @@ var/global/datum/controller/occupations/job_master
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
 			if(!job)	continue
+			if(job.title == "BASIC") continue
 			if(job.faction != faction)	continue
 			occupations += job
-
-
 		return 1
 
 

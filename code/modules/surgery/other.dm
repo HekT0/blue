@@ -89,6 +89,7 @@
 		user.visible_message("\blue [user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool].", \
 			"\blue You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool].")
 		affected.open = 3
+		playsound(target.loc, 'sound/effects/squelch1.ogg', 50, 1)
 
 	fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -100,7 +101,7 @@
 	priority = 2
 	allowed_tools = list(
 		/obj/item/weapon/reagent_containers/dropper = 100,
-		/obj/item/weapon/reagent_containers/glass/bottle = 75,
+		/obj/item/weapon/reagent_containers/glass/beaker/bottle = 75,
 		/obj/item/weapon/reagent_containers/glass/beaker = 75,
 		/obj/item/weapon/reagent_containers/spray = 50,
 		/obj/item/weapon/reagent_containers/glass/bucket = 50,

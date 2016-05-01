@@ -169,6 +169,24 @@ area/space/atmosalert()
 	name = "\improper Emergency Shuttle Transit"
 	icon_state = "shuttle"
 
+
+/area/shuttle/escort
+	name = "\improper Escort Shuttle"
+	music = "music/escape.ogg"
+
+/area/shuttle/escort/ship
+	name = "\improper Escort Shuttle Ship"
+	icon_state = "shuttle2"
+
+/area/shuttle/escort/station
+	name = "\improper Escort Shuttle Station"
+	icon_state = "shuttle"
+
+/area/shuttle/escort/transit
+	name = "\improper Escort Shuttle Transit"
+	icon_state = "shuttle"
+
+
 /area/shuttle/escape_pod1
 	name = "\improper Escape Pod One"
 	music = "music/escape.ogg"
@@ -394,6 +412,11 @@ area/space/atmosalert()
 
 //EXTRA
 
+/area/escort_ship
+	name = "\improper Escort Base Ship"
+	icon_state = "syndie-ship"
+	requires_power = 0
+
 /area/asteroid					// -- TLE
 	name = "\improper Asteroid"
 	icon_state = "asteroid"
@@ -448,6 +471,10 @@ area/space/atmosalert()
 /area/tdome/tdomeobserve
 	name = "\improper Thunderdome (Observer.)"
 	icon_state = "purple"
+
+/area/tdome/tdomenew
+	name = "\improper Thunderdome (New)"
+	icon_state = "thundernew"
 
 //ENEMY
 
@@ -975,6 +1002,10 @@ area/space/atmosalert()
 	name = "\improper Bar"
 	icon_state = "bar"
 
+area/crew_quarters/barman
+	name = "\improper Barman"
+	icon_state = "barman"
+
 /area/crew_quarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
@@ -1471,6 +1502,10 @@ area/space/atmosalert()
 	name = "\improper Research and Development"
 	icon_state = "research"
 
+/area/rnd/brainstorm
+	name = "\improper Brainstorm Office"
+	icon_state = "res_break"
+
 /area/rnd/docking
 	name = "\improper Research Dock"
 	icon_state = "research_dock"
@@ -1514,6 +1549,10 @@ area/space/atmosalert()
 /area/rnd/misc_lab
 	name = "\improper Miscellaneous Research"
 	icon_state = "toxmisc"
+
+/area/rnd/res_break
+	name = "\improper Research Break Room"
+	icon_state = "res_break"
 
 /area/toxins/server
 	name = "\improper Server Room"
@@ -1848,8 +1887,6 @@ area/space/atmosalert()
 
 
 //Misc
-
-
 
 /area/wreck/ai
 	name = "\improper AI Chamber"

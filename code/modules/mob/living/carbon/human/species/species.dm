@@ -46,6 +46,7 @@
 	var/brute_mod = 1                        // Physical damage multiplier.
 	var/burn_mod = 1                         // Burn damage multiplier.
 	var/vision_flags = SEE_SELF              // Same flags as glasses.
+	var/taste_sensitivity = TASTE_NORMAL                   // How sensitive the species is to minute tastes. Higher values means less sensitive. Lower values means more sensitive.
 
 	// Death vars.
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/human
@@ -142,6 +143,11 @@
 	var/list/accent = list()
 	var/list/accentFL = list()
 	var/allow_slim_fem = 0
+
+	//Species Abilities
+	var/tmp/evolution_points = 0 //How many points race have for abilities
+
+
 
 	// Srites
 	proc/get_uniform_sprite(state = "", var/body_build = 0)
@@ -371,4 +377,25 @@
 
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/Stat(var/mob/living/carbon/human/H)
+	if(emergency_shuttle)
+		var/eta_status = emergency_shuttle.get_status_panel_eta()
+		if(eta_status)
+			stat(null, eta_status)
+
+	if (H.internal)
+		if (!H.internal.air_contents)
+			qdel(H.internal)
+		else
+			stat("Internal Atmosphere Info", H.internal.name)
+			stat("Tank Pressure", H.internal.air_contents.return_pressure())
+			stat("Distribution Pressure", H.internal.distribute_pressure)
+
+	if(H.back && istype(H.back,/obj/item/weapon/rig))
+		var/obj/item/weapon/rig/suit = H.back
+		var/cell_status = "ERROR"
+		if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
+		stat(null, "Suit charge: [cell_status]")
 	return

@@ -85,6 +85,8 @@
 		new /obj/item/clothing/shoes/white(src)
 		new /obj/item/clothing/under/rank/head_of_personnel/whimsy(src)
 		new /obj/item/clothing/under/rank/head_of_personnel/dark(src)
+		new /obj/item/clothing/under/rank/head_of_personnel/doctor(src)
+		new /obj/item/clothing/suit/storage/toggle/hop(src)
 		new /obj/item/clothing/head/helmet/hop(src)
 		return
 
@@ -314,10 +316,7 @@
 	New()
 		..()
 		new /obj/item/clothing/under/rank/forentech(src)
-		new /obj/item/clothing/under/rank/forentech(src)
 		new /obj/item/clothing/under/rank/forentech2(src)
-		new /obj/item/clothing/under/rank/forentech2(src)
-		new	/obj/item/clothing/suit/storage/toggle/labcoat/forensic(src)
 		new	/obj/item/clothing/suit/storage/toggle/labcoat/forensic(src)
 		new /obj/item/clothing/gloves/black(src)
 		new /obj/item/clothing/shoes/brown(src)

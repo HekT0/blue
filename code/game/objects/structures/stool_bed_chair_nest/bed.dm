@@ -222,6 +222,8 @@
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded"
+	item_state = "folded"
+	slot_flags = SLOT_BACK
 	w_class = 4.0 // Can't be put in backpacks. Oh well.
 
 /obj/item/roller/attack_self(mob/user)
@@ -297,3 +299,32 @@
 		spawn(0)
 			qdel(src)
 		return
+
+/obj/structure/bed/sofa/right
+	name = "comfy sofa"
+	desc = "So lovely, uh."
+	icon_state = "sofa_right"
+	base_icon = "sofa_right"
+	buckle_dir = 0
+	buckle_lying = 0
+	color = null
+
+
+/obj/structure/bed/sofa/left
+	name = "comfy sofa"
+	desc = "So lovely, uh."
+	icon_state = "sofa_left"
+	base_icon = "sofa_left"
+	buckle_lying = 0
+	buckle_dir = 0
+	color = null
+
+/obj/structure/bed/sofa/New(var/newloc)
+	..(newloc,"plastic")
+
+
+/obj/structure/bed/sofa/proc/update_layer()
+	if(src.dir == NORTH)
+		src.layer = 5
+	else
+		src.layer = OBJ_LAYER

@@ -984,7 +984,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
 		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
 		for(var/mob/M in player_list)
-			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS)) // src.client is so that ghosts don't have to listen to mice
+			if(M.stat == DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTEARS)) // src.client is so that ghosts don't have to listen to mice
 				if(istype(M, /mob/new_player))
 					continue
 				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[reception.message]</span></span>")
@@ -1103,12 +1103,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
 			if (istype(loc, /mob))
-				var/mob/M = loc
-				if(M.get_active_hand() == null)
-					M.put_in_hands(O)
-					usr << "<span class='notice'>You remove \the [O] from \the [src].</span>"
-					return
-			O.loc = get_turf(src)
+				loc:put_in_hands(O)
+				usr << "<span class='notice'>You remove \the [O] from \the [src].</span>"
+				return
 		else
 			usr << "<span class='notice'>This PDA does not have a pen in it.</span>"
 	else

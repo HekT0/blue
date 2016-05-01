@@ -172,11 +172,6 @@
 			if( count < 1 || count > max_pill_count)
 				return
 
-			var/turf/src_turf = get_turf(src)
-			if( !src_turf.Adjacent(usr) )
-				usr.unset_machine()
-				return
-
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
 
@@ -184,6 +179,10 @@
 			if (amount_per_pill > 60) amount_per_pill = 60
 
 			var/name = sanitizeName(input(usr,"Name:","Name your pill!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)"), MAX_NAME_LEN, 1)
+
+			if(!src.Adjacent(usr))
+				usr.unset_machine()
+				return
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
@@ -203,8 +202,10 @@
 		else if (href_list["createbottle"])
 			if(!condi)
 				var/name = sanitizeName(input(usr,"Name:","Name your bottle!",reagents.get_master_reagent_name()), MAX_NAME_LEN, 1)
-				var/obj/item/weapon/reagent_containers/glass/bottle/P = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
-				if(!name) name = reagents.get_master_reagent_name()
+				if(!name || !src.Adjacent(usr))
+					usr.unset_machine()
+					return
+				var/obj/item/weapon/reagent_containers/glass/beaker/bottle/P = new/obj/item/weapon/reagent_containers/glass/beaker/bottle(src.loc)
 				P.name = "[name] bottle"
 				P.pixel_x = rand(-7, 7) //random position
 				P.pixel_y = rand(-7, 7)
@@ -356,7 +357,7 @@
 
 	if (href_list["create_vaccine"])
 		if(!src.wait)
-			var/obj/item/weapon/reagent_containers/glass/bottle/B = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
+			var/obj/item/weapon/reagent_containers/glass/beaker/bottle/B = new/obj/item/weapon/reagent_containers/glass/beaker/bottle(src.loc)
 			if(B)
 				var/path = href_list["create_vaccine"]
 				var/vaccine_type = text2path(path)
@@ -388,7 +389,7 @@
 		return
 	else if (href_list["create_virus_culture"])
 		if(!wait)
-			var/obj/item/weapon/reagent_containers/glass/bottle/B = new/obj/item/weapon/reagent_containers/glass/bottle(src.loc)
+			var/obj/item/weapon/reagent_containers/glass/beaker/bottle/B = new/obj/item/weapon/reagent_containers/glass/beaker/bottle(src.loc)
 			B.icon_state = "bottle-1"
 			var/type = text2path(href_list["create_virus_culture"])//the path is received as string - converting
 			var/datum/disease/D = null
@@ -601,8 +602,8 @@
 /obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/drinkingglass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/shaker))
+		istype(O,/obj/item/weapon/reagent_containers/glass/drinks/drinkingglass) || \
+		istype(O,/obj/item/weapon/reagent_containers/glass/drinks/shaker))
 
 		if (beaker)
 			return 1
@@ -761,8 +762,7 @@
 	// Reset the machine.
 	spawn(60)
 		inuse = 0
-		var/turf/src_turf = get_turf(src)
-		if( !src_turf.Adjacent(usr) )
+		if(!Adjacent(usr))
 			usr.unset_machine()
 			return
 		interact(usr)

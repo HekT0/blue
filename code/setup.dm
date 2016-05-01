@@ -92,8 +92,8 @@
 #define THROWNOBJ_KNOCKBACK_DIVISOR 2  // Affects how much speed the mob is knocked back with.
 
 #define PRESSURE_DAMAGE_COEFFICIENT 4 // The amount of pressure damage someone takes is equal to (pressure / HAZARD_HIGH_PRESSURE)*PRESSURE_DAMAGE_COEFFICIENT, with the maximum of MAX_PRESSURE_DAMAGE.
-#define    MAX_HIGH_PRESSURE_DAMAGE 4 // This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(
-#define         LOW_PRESSURE_DAMAGE 2 // The amount of damage someone takes when in a low pressure area. (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).
+#define    MAX_HIGH_PRESSURE_DAMAGE 7 // This used to be 20... I got this much random rage for some retarded decision by polymorph?! Polymorph now lies in a pool of blood with a katana jammed in his spleen. ~Errorage --PS: The katana did less than 20 damage to him :(
+#define         LOW_PRESSURE_DAMAGE 5 // The amount of damage someone takes when in a low pressure area. (The pressure threshold is so low that it doesn't make sense to do any calculations, so it just applies this flat value).
 
 // Doors!
 #define DOOR_CRUSH_DAMAGE 10
@@ -408,6 +408,7 @@
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
+#define PIERCE    "pierce"
 
 #define STUN      "stun"
 #define WEAKEN    "weaken"
@@ -457,10 +458,11 @@
 // Therefore there needs to be a gap between the flags for the automute flags.
 #define MUTE_IC        1
 #define MUTE_OOC       2
-#define MUTE_PRAY      4
-#define MUTE_ADMINHELP 8
-#define MUTE_DEADCHAT  16
-#define MUTE_ALL       31
+#define MUTE_LOOC      4
+#define MUTE_PRAY      8
+#define MUTE_ADMINHELP 16
+#define MUTE_DEADCHAT  32
+#define MUTE_ALL       63
 
 // Number of identical messages required to get the spam-prevention auto-mute thing to trigger warnings and automutes.
 #define SPAM_TRIGGER_WARNING  5
@@ -550,20 +552,29 @@
 #define SOUND_MIDI      2
 #define SOUND_AMBIENCE  4
 #define SOUND_LOBBY     8
-#define CHAT_OOC        16
-#define CHAT_DEAD       32
-#define CHAT_GHOSTEARS  64
-#define CHAT_GHOSTSIGHT 128
-#define CHAT_PRAYER     256
-#define CHAT_RADIO      512
-#define CHAT_ATTACKLOGS 1024
-#define CHAT_DEBUGLOGS  2048
-#define CHAT_LOOC       4096
-#define CHAT_GHOSTRADIO 8192
-#define SHOW_TYPING     16384
-#define CHAT_NOICONS    32768
+#define SHOW_TYPING     16
+#define CHAT_NOICONS    32
+#define RUS_AUTOEMOTES  64
+#define HIDE_MOTD       128
+#define PREFER_NEWSETUP 256
 
-#define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_LOOC)
+// Preference chat.
+#define CHAT_OOC          1
+#define CHAT_DEAD         2
+#define CHAT_GHOSTEARS    4
+#define CHAT_GHOSTSIGHT   8
+#define CHAT_PRAYER       16
+#define CHAT_RADIO        32
+#define CHAT_ATTACKLOGS   64
+#define CHAT_DEBUGLOGS    128
+#define CHAT_ADMINLOGS    256
+#define CHAT_GAMEMODELOGS 512
+#define CHAT_LOOC         1024
+#define CHAT_GHOSTRADIO   2048
+#define CHAT_GHOSTANONIM  4096
+
+#define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY)
+#define CHAT_TOGGLES_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_ADMINLOGS|CHAT_LOOC)
 
 #define BE_TRAITOR    1
 #define BE_OPERATIVE  2
@@ -973,6 +984,9 @@ var/list/be_special_flags = list(
 #define LANGUAGE_ROOTSPEAK "Rootspeak"
 #define LANGUAGE_TRADEBAND "Tradeband"
 #define LANGUAGE_GUTTER "Gutter"
+#define LANGUAGE_SIIK_MAAS "Siik'maas"
+#define LANGUAGE_SURZHYK "Surzhyk"
+
 
 #define WALL_CAN_OPEN 1
 #define WALL_OPENING 2

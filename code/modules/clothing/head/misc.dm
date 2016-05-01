@@ -8,6 +8,13 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
+/obj/item/clothing/head/floral_crown
+	name = "flower crown"
+	icon_state = "floral_crown"
+	desc = "Peace and Love."
+	item_state = "floral_crown"
+	body_parts_covered = 0
+
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
 	icon_state = "hairflower"
@@ -128,6 +135,12 @@
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
 	icon_state = "bunny"
 	body_parts_covered = 0
+
+/obj/item/clothing/head/sol_beret
+	name = "sol beret"
+	desc = "A blue beret. Only dumb martians wear this!"
+	icon_state = "sol_beret"
+	item_state = "sol beret"
 
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
@@ -261,3 +274,9 @@
 	icon_state = "orange_bandana"
 	item_state = "orange_bandana"
 	body_parts_covered = 0
+
+/obj/item/clothing/head/beret/black
+	name = "black beret"
+	desc = "Usuall black beret. Nothing special."
+	icon_state = "blackberet"
+	item_state = "blackberet"

@@ -101,20 +101,6 @@
 		name = "Long Fringe"
 		icon_state = "hair_longfringe"
 
-	longestalt
-		name = "Longer Fringe"
-		icon_state = "hair_vlongfringe"
-
-	wife
-		name = "Wife"
-		icon_state = "hair_wife"
-		gender = FEMALE
-
-	victory
-		name = "Victory"
-		icon_state = "hair_victory"
-		gender = FEMALE
-
 	hbangs
 		name = "Combed Hair"
 		icon_state = "hair_hbangs"
@@ -294,8 +280,8 @@
 		icon_state = "hair_zone"
 		gender = FEMALE
 
-	bun
-		name = "Bun"
+	messy_bun
+		name = "Messy Bun"
 		icon_state = "hair_bun"
 		gender = FEMALE
 
@@ -412,6 +398,11 @@
 	mbraid
 		name = "Medium Braid"
 		icon_state = "hair_shortbraid"
+		gender = FEMALE
+		
+	mbraidalt
+		name = "Medium Braid Alt"
+		icon_state = "hair_mediumbraid"
 		gender = FEMALE
 
 	braid2
@@ -769,6 +760,24 @@
 		species_allowed = list("Skrell")
 		gender = FEMALE
 
+	skr_tentacle_f_old
+		name = "Skrell Female Tentacles (old)"
+		icon_state = "skrell_hair_f_old"
+		species_allowed = list("Skrell")
+		gender = FEMALE
+
+	skr_tentacle_f_wide
+		name = "Skrell Female Tentacles Wide"
+		icon_state = "skrell_hair_f_wide"
+		species_allowed = list("Skrell")
+		gender = FEMALE
+
+	skr_tentacle_f_alt
+		name = "Skrell Female Tentacles Alt"
+		icon_state = "skrell_hair_f_alt"
+		species_allowed = list("Skrell")
+		gender = FEMALE
+
 	taj_ears
 		name = "Tajaran Ears"
 		icon_state = "ears_plain"
@@ -792,6 +801,11 @@
 	taj_ears_shaggy
 		name = "Tajara Shaggy"
 		icon_state = "hair_shaggy"
+		species_allowed = list("Tajara")
+
+	taj_ears_chalma
+		name = "Tajara Chalma"
+		icon_state = "hair_chalma"
 		species_allowed = list("Tajara")
 
 	taj_ears_mohawk
@@ -827,6 +841,18 @@
 	taj_ears_messy
 		name = "Tajara Messy"
 		icon_state = "hair_messy"
+		species_allowed = list("Tajara")
+
+	wife
+		name = "Tajara Wife"
+		icon_state = "hair_wife"
+		gender = FEMALE
+		species_allowed = list("Tajara")
+
+	victory
+		name = "Tajara Victory"
+		icon_state = "hair_victory"
+		gender = FEMALE
 		species_allowed = list("Tajara")
 
 	vox_quills_short

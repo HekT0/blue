@@ -49,8 +49,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/food/condiment/flour,
 					/obj/item/weapon/reagent_containers/food/condiment/flour,
 					/obj/item/weapon/reagent_containers/food/condiment/flour,
-					/obj/item/weapon/reagent_containers/food/drinks/milk,
-					/obj/item/weapon/reagent_containers/food/drinks/milk,
+					/obj/item/weapon/reagent_containers/glass/drinks/milk,
+					/obj/item/weapon/reagent_containers/glass/drinks/milk,
 					/obj/item/weapon/storage/fancy/egg_box,
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
 					/obj/item/weapon/reagent_containers/food/snacks/tofu,
@@ -120,18 +120,18 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_packs/party
 	name = "Party equipment"
 	contains = list(/obj/item/weapon/storage/box/drinkingglasses,
-					/obj/item/weapon/reagent_containers/food/drinks/shaker,
-					/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
+					/obj/item/weapon/reagent_containers/glass/drinks/shaker,
+					/obj/item/weapon/reagent_containers/glass/drinks/flask/barflask,
+					/obj/item/weapon/reagent_containers/glass/drinks/bottle/patron,
+					/obj/item/weapon/reagent_containers/glass/drinks/bottle/goldschlager,
 					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 					/obj/item/weapon/lipstick/random,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/ale,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/ale,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/beer)
+					/obj/item/weapon/reagent_containers/glass/drinks/cans/ale,
+					/obj/item/weapon/reagent_containers/glass/drinks/cans/ale,
+					/obj/item/weapon/reagent_containers/glass/drinks/cans/beer,
+					/obj/item/weapon/reagent_containers/glass/drinks/cans/beer,
+					/obj/item/weapon/reagent_containers/glass/drinks/cans/beer,
+					/obj/item/weapon/reagent_containers/glass/drinks/cans/beer)
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "Party equipment"
@@ -271,8 +271,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/reagent_containers/spray/plantbgone,
 					/obj/item/weapon/reagent_containers/spray/plantbgone,
 					/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
-					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/ammonia,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/ammonia,
 					/obj/item/weapon/material/hatchet,
 					/obj/item/weapon/material/minihoe,
 					/obj/item/device/analyzer/plant_analyzer,
@@ -384,9 +384,9 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/weapon/storage/firstaid/toxin,
 					/obj/item/weapon/storage/firstaid/o2,
 					/obj/item/weapon/storage/firstaid/adv,
-					/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-					/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-					/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/antitoxin,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/inaprovaline,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/stoxin,
 					/obj/item/weapon/storage/box/syringes,
 					/obj/item/weapon/storage/box/autoinjectors)
 	cost = 10
@@ -435,18 +435,18 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_packs/virus
 	name = "Virus sample crate"
-/*	contains = list(/obj/item/weapon/reagent_containers/glass/bottle/flu_virion,
-					/obj/item/weapon/reagent_containers/glass/bottle/cold,
-					/obj/item/weapon/reagent_containers/glass/bottle/epiglottis_virion,
-					/obj/item/weapon/reagent_containers/glass/bottle/liver_enhance_virion,
-					/obj/item/weapon/reagent_containers/glass/bottle/fake_gbs,
-					/obj/item/weapon/reagent_containers/glass/bottle/magnitis,
-					/obj/item/weapon/reagent_containers/glass/bottle/pierrot_throat,
-					/obj/item/weapon/reagent_containers/glass/bottle/brainrot,
-					/obj/item/weapon/reagent_containers/glass/bottle/hullucigen_virion,
+/*	contains = list(/obj/item/weapon/reagent_containers/glass/beaker/bottle/flu_virion,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/cold,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/epiglottis_virion,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/liver_enhance_virion,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/fake_gbs,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/magnitis,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/pierrot_throat,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/brainrot,
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/hullucigen_virion,
 					/obj/item/weapon/storage/box/syringes,
 					/obj/item/weapon/storage/box/beakers,
-					/obj/item/weapon/reagent_containers/glass/bottle/mutagen)*/
+					/obj/item/weapon/reagent_containers/glass/beaker/bottle/mutagen)*/
 	contains = list(/obj/item/weapon/virusdish/random,
 					/obj/item/weapon/virusdish/random,
 					/obj/item/weapon/virusdish/random,
@@ -1000,7 +1000,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/seeds/bloodtomatoseed,
 					/obj/item/weapon/storage/pill_bottle/zoom,
 					/obj/item/weapon/storage/pill_bottle/happy,
-					/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine)
+					/obj/item/weapon/reagent_containers/glass/drinks/bottle/pwine)
 
 	name = "Contraband crate"
 	cost = 30

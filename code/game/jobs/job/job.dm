@@ -1,7 +1,7 @@
 /datum/job
 
 	//The name of the job
-	var/title = "NOPE"
+	var/title = "BASIC"
 	//Job access. The use of minimal_access or access is determined by a config setting: config.jobs_have_minimal_access
 	var/list/minimal_access = list()      // Useful for servers which prefer to only have access given to the places a job absolutely needs (Larger server population)
 	var/list/access = list()              // Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
@@ -34,23 +34,31 @@
 	var/ear = /obj/item/device/radio/headset
 	var/hand = null
 	var/glasses = null
+	var/suit_store = null
+
+	var/backpack = /obj/item/weapon/storage/backpack
+	var/satchel = /obj/item/weapon/storage/backpack/satchel_norm
+	var/duffle = /obj/item/weapon/storage/backpack/duffle
 
 	var/list/backpacks = list(
 		/obj/item/weapon/storage/backpack,\
 		/obj/item/weapon/storage/backpack/satchel_norm,\
 		/obj/item/weapon/storage/backpack/satchel
-		)
+	)
 
 	//This will be put in backpack. List ordered by priority!
 	var/list/put_in_backpack = list()
 
-	/*For copy-pasting:
+/*
+For copy-pasting:
+
 	implanted =
 	uniform =
 	pda =
 	ear =
 	shoes =
 	suit =
+	suit_store =
 	gloves =
 	mask =
 	belt =
@@ -58,19 +66,19 @@
 	glasses =
 	hat =
 
+	backpack =
+	satchel =
+	duffle =
+
 	put_in_backpack = list(\
+	)
+*/
 
-		)
-
-	backpacks = list(
-		/obj/item/weapon/storage/backpack,\
-		/obj/item/weapon/storage/backpack/satchel_norm,\
-		/obj/item/weapon/storage/backpack/satchel
-		)
-	*/
-
-/datum/job/proc/equip(var/mob/living/carbon/human/H)
+/datum/job/proc/equip(var/mob/living/carbon/human/H, var/spawn_loadout = 0)
 	if(!H)	return 0
+
+	if(!H.client || !H.client.prefs.toggles & PREFER_NEWSETUP)
+		spawn_loadout = 0
 
 	//Put items in hands
 	if(hand) H.equip_to_slot_or_del(new hand (H), slot_l_hand)
@@ -87,14 +95,15 @@
 	H.equip_survival_gear(custom_survival_gear)
 
 	//No-check items (suits, gloves, etc)
-	if(ear) 	H.equip_to_slot_or_del(new ear (H), slot_l_ear)
-	if(shoes)	H.equip_to_slot_or_del(new shoes (H), slot_shoes)
-	if(uniform)	H.equip_to_slot_or_del(new uniform (H), slot_w_uniform)
-	if(suit)	H.equip_to_slot_or_del(new suit (H), slot_wear_suit)
-	if(mask)	H.equip_to_slot_or_del(new mask (H), slot_wear_mask)
-	if(hat)		H.equip_to_slot_or_del(new hat (H), slot_head)
-	if(gloves)	H.equip_to_slot_or_del(new gloves (H), slot_gloves)
-	if(glasses)	H.equip_to_slot_or_del(new glasses (H), slot_glasses)
+	if(ear) 		H.equip_to_slot_or_del(new ear (H), slot_l_ear)
+	if(shoes)		H.equip_to_slot_or_del(new shoes (H), slot_shoes)
+	if(uniform)		H.equip_to_slot_or_del(new uniform (H), slot_w_uniform)
+	if(suit)		H.equip_to_slot_or_del(new suit (H), slot_wear_suit)
+	if(suit_store)	H.equip_to_slot_or_del(new suit_store (H), slot_s_store)
+	if(mask)		H.equip_to_slot_or_del(new mask (H), slot_wear_mask)
+	if(hat)			H.equip_to_slot_or_del(new hat (H), slot_head)
+	if(gloves)		H.equip_to_slot_or_del(new gloves (H), slot_gloves)
+	if(glasses)		H.equip_to_slot_or_del(new glasses (H), slot_glasses)
 
 	//Belt and PDA
 	if(belt)
